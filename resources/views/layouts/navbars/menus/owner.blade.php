@@ -72,7 +72,7 @@
         @if(config('settings.enable_guest_log'))
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.restaurant.visits.index') }}">
-                <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Customers log') }}
+                <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Marketing') }}
             </a>
         </li>
         @endif

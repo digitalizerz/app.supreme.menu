@@ -1,0 +1,41 @@
+{
+    "alias": "timezone",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Timezone\\Providers\\Main"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": [],
+    "vendor_fields":[
+    {
+        "separator":"Custom Timezone",
+        "title": "Time Zone",
+        "key": "time_zone",
+        "ftype": "select",
+        "value":"",
+        "data":[]
+    },
+    {
+        "title": "Time Language",
+        "key": "time_locale",
+        "ftype": "select",
+        "value":"",
+        "data":[]
+    },
+    {
+        "title": "Time Format for orders",
+        "key": "time_format_for_orders",
+        "ftype": "input",
+        "value":""
+    },{
+        "title": "Time Format for closing time",
+        "key": "time_format_for_closing_time",
+        "ftype": "input",
+        "value":""
+    }
+    ]
+}

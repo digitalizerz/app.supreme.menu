@@ -19511,6 +19511,13 @@ textarea[resize='horizontal']
         max-width: 250px;
         padding-right: 1.5rem;
         padding-left: 1.5rem;
+		background: #000000 !important;
+    }
+	.navbar-vertical.navbar-expand-md .navbar-nav .nav-link {
+    padding: 0.45rem 1.5rem !important;
+    font-weight: 600;
+    color: #ffffff;
+	font-size: 1rem !important;
     }
     .navbar-vertical.navbar-expand-md > [class*='container']
     {
