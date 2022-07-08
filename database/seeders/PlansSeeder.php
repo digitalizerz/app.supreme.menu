@@ -16,29 +16,29 @@ class PlansSeeder extends Seeder
     {
         
         if(!config('settings.is_whatsapp_ordering_mode')){
-            if(config('settings.is_pos_cloud_mode')){
-                //Pos cloud
+            if(config('app.issd')){
+                //Social Driver
                 DB::table('plan')->insert([
                     'name' => 'Free',
-                    'limit_items'=>30,
-                    'limit_orders'=>100,
+                    'limit_items'=>1,
+                    'limit_orders'=>10,
                     'price'=>0,
                     'paddle_id'=>'',
-                    'description'=>'For small restaurant or bars. You can upgrade ',
-                    'features'=>'Full access to POS tool, Expenses and Profit, 100 orders per month , Dine in + TakeAway and Delivery Orders',
+                    'description'=>'Test plan, 1 driver - 10 orders. Get to know the platform',
+                    'features'=>'10 Orders per month, 1 driver',
                     'created_at' => now(),
                     'updated_at' => now(),
                     'enable_ordering'=>1,
                 ]);
         
                 DB::table('plan')->insert([
-                    'name' => 'Pro',
-                    'limit_items'=>0,
-                    'limit_orders'=>0,
+                    'name' => 'Individual',
+                    'limit_items'=>1,
+                    'limit_orders'=>500,
                     'price'=>49,
                     'paddle_id'=>'',
-                    'description'=>'For bigger restaurants and bars. Limitless plan',
-                    'features'=>'Full access to POS tool, Expenses and Profit, Unlimited orders included, Dine in + TakeAway and Delivery Orders, Dedicated support, Cancel anytime',
+                    'description'=>'For individual taxi drivers, Up to 500 rides per month',
+                    'features'=>'Full access to the platform, Manage expenses, Driver app, Get paid online, 500 rides per month, 1 driver only',
                     'created_at' => now(),
                     'updated_at' => now(),
                     'enable_ordering'=>1,
@@ -46,17 +46,31 @@ class PlansSeeder extends Seeder
                 ]);
         
                 DB::table('plan')->insert([
-                    'name' => 'Pro Yearly',
+                    'name' => 'Company',
+                    'limit_items'=>10,
+                    'limit_orders'=>5000,
+                    'price'=>399,
+                    'paddle_id'=>'',
+                    'description'=>'For taxi companies, Up to 5000 rides per month',
+                    'features'=>'Full access to the platform, Manage expenses, Driver app, Get paid online, 5000 rides per month, Up to 10 drivers',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                    'enable_ordering'=>1,
+                    'period'=>1,
+                ]);
+
+                DB::table('plan')->insert([
+                    'name' => 'Unlimited',
                     'limit_items'=>0,
                     'limit_orders'=>0,
                     'price'=>499,
                     'paddle_id'=>'',
-                    'description'=>'Get 2 months free when on yearly plan',
-                    'features'=>'Full access to POS tool, Expenses and Profit, Unlimited orders included, Dine in + TakeAway and Delivery Orders',
+                    'description'=>'For growing taxi companies, we offer you no limit',
+                    'features'=>'Full access to the platform, Manage expenses, Driver app, Get paid online, Unlimited rides per month, Unlimited drivers',
                     'created_at' => now(),
                     'updated_at' => now(),
                     'enable_ordering'=>1,
-                    'period'=>2,
+                    'period'=>1,
                 ]);
             } else if(config('settings.is_pos_cloud_mode')){
                 //Pos cloud
@@ -100,8 +114,8 @@ class PlansSeeder extends Seeder
                     'enable_ordering'=>1,
                     'period'=>2,
                 ]);
-            }if(config('settings.is_agris_mode')){
-                //Pos cloud
+            }else if(config('settings.is_agris_mode')){
+                //Agris
                 DB::table('plan')->insert([
                     'name' => 'Lite',
                     'limit_items'=>30,

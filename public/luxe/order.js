@@ -316,7 +316,12 @@ function setCurrentItem(id) {
         $('#variants-area').hide();
         $('.quantity-area').show();
     }
+    
+    if(item.no_ordering > 0){
+        $('#addToCart1').hide();
+    }
 
+   
 
     $('#productModal').modal('show');
 

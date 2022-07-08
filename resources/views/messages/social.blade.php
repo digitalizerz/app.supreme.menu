@@ -10,7 +10,11 @@
 {{"*".__('Delivery Order No').": ".$order->id."*"}}
 @else
 ✅🏫
+@if($order->delivery_method==3)
+{{"*".__('Delivery Order No').": ".$order->id."*"}}
+@else
 {{"*".__('Pickup Order No').": ".$order->id."*"}}
+@endif
 @endif
 
 ---------
@@ -59,7 +63,7 @@ foreach ($order->items()->get() as $key => $item) {
 {{ __('Delivery time').": ".$order->getTimeFormatedAttribute() }}
 @else
 {{ __('Customer name').": ". ($order->configs&&isset($order->configs['client_name'])?$order->configs['client_name']:"") }}
-{{ __('Customer phone').": ". ($order->configs&&isset($order->configs['client_phone'])?$order->configs['client_phone']:"") }}
+{{ __('Customer phone').": ". ($order->configs&&isset($order->configs['client_phone'])&&strlen($order->configs['client_phone'])>3?$order->configs['client_phone']:"+".$order->phone) }}
 {{ __('Address').": ".$order->whatsapp_address }}
 @if(config('app.iswp')) 
 {{ __('Delivery Area').": ".($order->configs&&isset($order->configs['delivery_area_name'])?$order->configs['delivery_area_name']:"") }}
@@ -67,7 +71,7 @@ foreach ($order->items()->get() as $key => $item) {
 {{ __('Delivery time').": ".$order->getTimeFormatedAttribute() }}
 @endif
 
-@else
+@elseif($order->delivery_method==2)
 <?php   //Pickup details ?>
 ✅ {{ __('Pickup Details') }}
 

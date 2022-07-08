@@ -13,8 +13,8 @@ use NotificationChannels\OneSignal\OneSignalMessage;
 use NotificationChannels\OneSignal\OneSignalWebButton;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
-use NotificationChannels\Expo\ExpoChannel;
-use NotificationChannels\Expo\ExpoMessage;
+use App\NotificationChannels\Expo\ExpoChannel;
+use App\NotificationChannels\Expo\ExpoMessage;
 
 class OrderNotification extends Notification
 {
@@ -44,7 +44,15 @@ class OrderNotification extends Notification
      */
     public function via($notifiable)
     {
-        $notificationClasses = ['mail', 'database'];
+        $notificationClasses = ['database'];
+        
+        //Mail notification on vendor email
+        if($this->order->restorant->getConfig('enable_email_order_notification',false)){
+            array_push($notificationClasses, 'mail');
+        }else if(config('settings.send_order_email_to_vendor',false)){
+            array_push($notificationClasses, 'mail');
+        }
+
         if (config('settings.onesignal_app_id')) {
             array_push($notificationClasses, OneSignalChannel::class);
         }
@@ -54,7 +62,7 @@ class OrderNotification extends Notification
             }
         }
         if($this->user!=null&&strlen($this->user->expotoken)>3){
-            array_push($notificationClasses, ExpoChannel::class);  
+            array_push($notificationClasses,ExpoChannel::class);  
         }
         return $notificationClasses;
     }
@@ -64,10 +72,15 @@ class OrderNotification extends Notification
         $messages=$this->getMessages();
         $greeting=$messages[0];
         $line=$messages[1];
-        return ExpoMessage::create()
+        try {
+            return ExpoMessage::create()
             ->title($greeting)
             ->body($line)
             ->badge(1);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
     }
 
     public function toTwilio($notifiable)

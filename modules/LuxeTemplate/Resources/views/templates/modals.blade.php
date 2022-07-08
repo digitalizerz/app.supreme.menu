@@ -44,7 +44,7 @@
                 </div>
             </div>
             @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   )
-            <div class="modal-footer">
+            <div class="modal-footer" id="ordering">
                 <div class="footer-area">
                     <div class="d-flex product-price justify-content-between align-items-start mb-4">
                         <div id="price-area" class="py-2">

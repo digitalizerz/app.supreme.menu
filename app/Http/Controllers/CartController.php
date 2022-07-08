@@ -258,7 +258,7 @@ class CartController extends Controller
                 'tableName'=>$tableName
             ];
 
-            return view('cart')->with($params);
+            return view('cart-luxe')->with($params);
         }else{
             //Cart is empty
             if(config('app.isft')) {

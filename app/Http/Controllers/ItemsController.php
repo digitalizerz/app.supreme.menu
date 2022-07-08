@@ -137,6 +137,11 @@ class ItemsController extends Controller
         $item->description = strip_tags($request->item_description);
         $item->price = strip_tags($request->item_price);
         $item->category_id = strip_tags($request->category_id);
+        $item->available = $request->exists('itemAvailable');   /* Updated by Lovemore */
+        $item->featured =  $request->exists('featured');   /* Updated by Lovemore */
+        $item->no_ordering = $request->exists('no_ordering');   /* Updated by Lovemore */
+        $item->pay_tru_menu = $request->exists('pay_tru_menu');   /* Updated by Lovemore */
+        $item->send_order_notification = $request->exists('send_order_notification');   /* Updated by Lovemore */
         $defVat=0;
         $resto=$this->getRestaurant();
         if($resto){
@@ -237,6 +242,10 @@ class ItemsController extends Controller
 
 
         $item->available = $request->exists('itemAvailable');
+        $item->featured =  $request->exists('featured');   /* Updated by Lovemore */
+        $item->no_ordering = $request->exists('no_ordering');   /* Updated by Lovemore */
+        $item->pay_tru_menu = $request->exists('pay_tru_menu');   /* Updated by Lovemore */
+        $item->send_order_notification = $request->exists('send_order_notification');   /* Updated by Lovemore */
         $item->has_variants = $request->exists('has_variants');
         if(!$item->has_variants){
             $item->enable_system_variants=0;

@@ -599,6 +599,15 @@ class OrderController extends Controller
             $client="";
             if(config('app.isft')){
                 $client=$order['client']['name'];
+
+                if($order['table']&&$order['table']['restoarea']&&$order['table']['restoarea']['name']&&$order['table']['name']){
+                    $client=$order['table']['restoarea']['name'].' - '.$order['table']['name'];
+                }else if($order['table']&&$order['table']['name']){
+                    $client=$order['table']['name'];
+                }else{
+                    //If the order was made by a registered user, returns his name
+                    $client=$order['client']['name'];
+                }
             }else{
                 if(!config('settings.is_whatsapp_ordering_mode')){
                     //QR
@@ -617,7 +626,7 @@ class OrderController extends Controller
                 'restaurant_name'=>$order['restorant']['name'],
                 'last_status'=>count($order['status']) > 0 ? __($order['status'][count($order['status']) - 1]['name']) : 'Just created',
                 'last_status_id'=>count($order['status']) > 0 ? $order['status'][count($order['status']) - 1]['pivot']['status_id'] : 1,
-                'time'=>$order['updated_at'],
+                'time'=>Carbon::create($order['updated_at'])->locale(config('app.locale'))->isoFormat('LLLL'),
                 'client'=>$client,
                 'link'=>'/orders/'.$order['id'],
                 'price'=>money($order['order_price'], config('settings.cashier_currency'), config('settings.do_convertion')).'',
@@ -664,7 +673,7 @@ class OrderController extends Controller
                 //Box 3 - Done
                 //Today completed or rejected
                 $last_status = $item['last_status_id'];
-                if ($last_status == 2 || $last_status == 10 || ($item['last_status_id'] == 1 && config('app.isqrsaas'))) {
+                if ($last_status == 2 || $last_status == 10 || ($item['last_status_id'] == 1)) {
                     $item['pulse'] = 'blob green';
                     array_push($newOrders, $item);
                 } elseif ($last_status == 3 || $last_status == 4 || $last_status == 5) {
@@ -925,7 +934,7 @@ class OrderController extends Controller
             $backUrl = route('vendor', $order->restorant->subdomain);
         }
 
-        return view('orders.guestorders', ['backUrl'=>$backUrl, 'orders'=>$orders, 'statuses'=>Status::pluck('name', 'id')]);
+        return view('orders.luxe.guestorders', ['backUrl'=>$backUrl, 'orders'=>$orders, 'statuses'=>Status::pluck('name', 'id')]);
     }
 
 
@@ -1018,7 +1027,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($request->order);
         $message=$order->getSocialMessageAttribute(true);
         $url = 'https://api.whatsapp.com/send?phone='.$order->restorant->whatsapp_phone.'&text='.$message;
-        return view('orders.success', ['order' => $order,'showWhatsApp'=>false,'whatsappurl'=>$url]);
+        return view('orders.luxe.success', ['order' => $order,'showWhatsApp'=>false,'whatsappurl'=>$url]);
     }
 
     public function success(Request $request)
@@ -1053,7 +1062,7 @@ class OrderController extends Controller
             }
         }
 
-        
-        return view('orders.success', ['order' => $order,'showWhatsApp'=>$showWhatsApp]);
+        // A success page accordign to Luxe Theme Checkout       
+        return view('orders.luxe.success', ['order' => $order,'showWhatsApp'=>$showWhatsApp]);
     }
 }

@@ -35,7 +35,7 @@
                   <li class="nav-item dropdown dropdown-hover mx-2">
                     <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center" id="dropdownLanguages" data-bs-toggle="dropdown" aria-expanded="false">
                       @foreach ($availableLanguages as $short => $lang)
-                        @if(strtolower($short) == strtolower($locale)) <span class="nav-link-inner--text"> {{ $lang }}</span>@endif
+                        @if(strtolower($short) == strtolower($locale)) <span class="nav-link-inner--text"> {{ __($lang) }}</span>@endif
                       @endforeach
                       <img src="./soft/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
                       
@@ -44,7 +44,7 @@
                         <li>
                             <a class="dropdown-item" href="/{{ strtolower($short) }}">
                               
-                               {{ $lang }}
+                               {{ __($lang) }}
                             </a>
                         </li>
                         @endforeach

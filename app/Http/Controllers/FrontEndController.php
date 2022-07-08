@@ -906,6 +906,7 @@ class FrontEndController extends Controller
             $restorant->increment('views');
 
             $canDoOrdering = $restorant->getPlanAttribute()['canMakeNewOrder'];
+            // dd($canDoOrdering);
             
             //ratings usernames
             $usernames = [];
@@ -964,9 +965,11 @@ class FrontEndController extends Controller
            
 
            $canDoOrdering=$canDoOrdering&&($businessHours->isOpen()||$doWeHaveOrderAfterHours);
+        //    dd($businessHours->isOpen());
            if ($restorant->getConfig('disable_ordering', false)){
             $canDoOrdering=false;
            }
+           
            
            $openingTime=null;
            $closingTime=null;

@@ -9,6 +9,6 @@ return [
     'link3name'=>env('LINK_THREE_NAME',''),
     'link1link'=>env('LINK_ONE_LINK',''),
     'link2link'=>env('LINK_TWO_LINK',''),
-    'lin3link'=>env('LINK_THREE_LINK',''),
+    'link3link'=>env('LINK_THREE_LINK',''),
   
 ];

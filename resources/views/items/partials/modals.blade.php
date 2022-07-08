@@ -110,6 +110,7 @@
             <div class="modal-body p-0">
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-body px-lg-5 py-lg-5">
+                        
                         <form role="form" method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group{{ $errors->has('item_name') ? ' has-danger' : '' }}">
@@ -121,7 +122,7 @@
                                 @endif
                             </div>
                             <div class="form-group{{ $errors->has('item_description') ? ' has-danger' : '' }}">
-                                <textarea class="form-control" id="item_description" name="item_description" rows="3" placeholder="{{ __('Item description') }} ..." required></textarea>
+                                <textarea class="form-control" id="item_description" name="item_description" rows="3" placeholder="{{ __('Item description') }} ..." ></textarea>
                                 @if ($errors->has('item_description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('item_description') }}</strong>
@@ -136,6 +137,14 @@
                                     </span>
                                 @endif
                             </div>
+                           
+                            <!-- Featured, Available items - added by Lovemore -->  
+                            @include('partials.toggle',['id'=>'featured','name'=>'Featured','checked'=> '']) 
+                            @include('partials.toggle',['id'=>'itemAvailable','name'=>'Item available','checked'=> ''])
+                            @include('partials.toggle',['id'=>'send_order_notification','name'=>'Enable order notification','checked'=> ''])
+                            @include('partials.toggle',['id'=>'pay_tru_menu','name'=>'Enable order payment','checked'=> ''])
+                            @include('partials.toggle',['id'=>'no_ordering','name'=>'Enable view item only','checked'=> ''])
+                            
                             <div class="form-group text-center{{ $errors->has('item_image') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="item_image">{{ __('Item Image') }}</label>
                                 <div class="text-center">
@@ -154,6 +163,7 @@
                                 </div>
                                 </div>
                             </div>
+                           
                             <input name="category_id" id="category_id" type="hidden" required>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">{{ __('Save') }}</button>

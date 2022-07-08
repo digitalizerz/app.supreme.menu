@@ -101,8 +101,11 @@ trait HasStripe
         
         $application_fee_amount = 0;
 
-        //Delivery fee
-        $application_fee_amount += (int) (($this->order->delivery_price));
+        //Delivery fee, only in FoodTiger
+        if(config('app.isft',true)){
+            $application_fee_amount += (int) (($this->order->delivery_price));
+        }
+        
         
         //Static fee
         $application_fee_amount += (float) $this->order->static_fee;

@@ -1,8 +1,8 @@
 <?php
 
-namespace NotificationChannels\Expo;
+namespace App\NotificationChannels\Expo;
 
-use NotificationChannels\Expo\Exceptions\CouldNotSendNotification;
+use App\NotificationChannels\Expo\Exceptions\CouldNotSendNotification;
 
 class ExpoMessage
 {

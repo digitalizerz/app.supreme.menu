@@ -287,6 +287,9 @@ function setCurrentItem(id){
         $('.quantity-area').show();
     }
 
+    if(item.no_ordering > 0){
+        $('#ordering').hide();
+    }
 
     $('#productModal').modal('show');
 

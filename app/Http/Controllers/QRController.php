@@ -12,7 +12,9 @@ class QRController extends Controller
         $domain = config('app.url');
         $linkToTheMenu = $domain.'/'.config('settings.url_route').'/'.auth()->user()->restorant->subdomain;
 
-        if (config('settings.wildcard_domain_ready')) {
+        if(strlen(auth()->user()->restorant->getConfig('domain'))>3){
+            $linkToTheMenu = "https://".auth()->user()->restorant->getConfig('domain');
+        }else if (config('settings.wildcard_domain_ready')) {
             $linkToTheMenu = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://').auth()->user()->restorant->subdomain.'.'.str_replace('www.', '', $_SERVER['HTTP_HOST']);
         }
 

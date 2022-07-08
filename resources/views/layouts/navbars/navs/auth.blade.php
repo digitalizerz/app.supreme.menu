@@ -15,7 +15,7 @@
 
            
           <!-- If user is owner or staff, show go to store-->
-          @if((auth()->user()->hasRole('owner')||auth()->user()->hasRole('staff'))&&!config('settings.is_pos_cloud_mode'))
+          @if((auth()->user()->hasRole('owner')||auth()->user()->hasRole('staff'))&&!config('settings.is_pos_cloud_mode')&&!config('app.issd'))
             @if (auth()->user()->hasRole('owner'))
               <?php $urlToVendor=auth()->user()->restaurants()->get()->first()->getLinkAttribute(); ?>
             @endif  
@@ -34,14 +34,14 @@
               <a href="#" class="nav-link" data-toggle="dropdown" role="button">
                 <i class="ni ni-world-2"></i>
                 @foreach ($availableLanguages as $short => $lang)
-                  @if(strtolower($short) == strtolower($locale))<span class="nav-link-inner--text">{{ $lang }}</span>@endif
+                  @if(strtolower($short) == strtolower($locale))<span class="nav-link-inner--text">{{ __($lang) }}</span>@endif
                 @endforeach
               </a>
               <div class="dropdown-menu">
                 @foreach ($availableLanguages as $short => $lang)
                 <a href="{{ route('home',$short)}}" class="dropdown-item">
                   <!--<img src="{{ asset('images') }}/icons/flags/{{ strtoupper($short)}}.png" /> -->
-                  {{ $lang }}</a>
+                  {{ __($lang) }}</a>
                 @endforeach
               </div>
             </li>

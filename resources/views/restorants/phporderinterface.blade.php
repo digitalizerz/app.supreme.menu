@@ -22,6 +22,9 @@
 
             $theArray=[
                 'name'=>$item->name,
+                'no_ordering'=>$item->no_ordering,
+                'pay_tru_menu'=>$item->pay_tru_menu,
+                'send_order_notification'=>$item->send_order_notification,
                 'id'=>$item->id,
                 'priceNotFormated'=>$item->price,
                 'price'=>@money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))."",

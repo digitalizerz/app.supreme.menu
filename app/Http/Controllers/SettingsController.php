@@ -482,6 +482,9 @@ class SettingsController extends Controller
         fwrite(fopen(__DIR__.'/../../../public/byadmin/front.css', 'w'), str_replace('tagscript', 'script',$request->cssfront) );
         fwrite(fopen(__DIR__.'/../../../public/byadmin/back.css', 'w'),  str_replace('tagscript', 'script',$request->cssback) );
 
+        fwrite(fopen(__DIR__.'/../../../public/byadmin/frontmenu.js', 'w'), str_replace('tagscript', 'script', $request->jsfrontmenu));
+        fwrite(fopen(__DIR__.'/../../../public/byadmin/frontcss.css', 'w'), str_replace('tagscript', 'script',$request->cssfrontmenu) );
+
         if ($request->hasFile('site_logo')) {
             $settings->site_logo = $this->saveImageVersions(
                 $this->imagePath,

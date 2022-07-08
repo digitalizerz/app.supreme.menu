@@ -12,7 +12,7 @@
 */
 
 Route::group([
-    //'middleware' => 'web',
+    //'middleware' =>[ 'web','impersonate'],
     'namespace' => 'Modules\PrintNode\Http\Controllers'
 ], function () {
     Route::prefix('printnode')->group(function() {

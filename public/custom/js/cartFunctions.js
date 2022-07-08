@@ -217,6 +217,9 @@ function getPages(){
 function dineTypeSwitch(mod){
   
 
+  //Phone field width
+  $('#phone').css("padding-left", "95px");
+
   $('.tablepicker').hide();
   $('.takeaway_picker').hide();
   $('.qraddressBox').hide();

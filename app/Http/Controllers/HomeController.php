@@ -114,6 +114,9 @@ class HomeController extends Controller
             session(['applocale_change' => strtolower($locale)]);
         }
        
+        if (auth()->user()->hasRole('owner')||auth()->user()->hasRole('staff')) {
+            \App\Services\ConfChanger::switchCurrency(auth()->user()->restorant);
+        }
         
 
         $last30days=Carbon::now()->subDays(30);

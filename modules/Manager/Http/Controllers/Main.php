@@ -130,8 +130,7 @@ class Main extends Controller
         $item = $this->provider::create([
             'name'=>$request->name,
             'email'=>$request->email,
-            'password'=>$generatedPassword,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($generatedPassword),
             'api_token' => Str::random(80)
         ]);
         $item->save();
