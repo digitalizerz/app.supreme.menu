@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Expo;
+namespace App\NotificationChannels\Expo;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Illuminate\Support\ServiceProvider;

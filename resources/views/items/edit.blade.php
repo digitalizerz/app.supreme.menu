@@ -93,7 +93,7 @@
                                         @include('partials.select', ['name'=>"Category",'id'=>"category_id",'placeholder'=>"Select category",'data'=>$categories,'required'=>true, 'value'=>$item->category_id])
                                         <div class="form-group{{ $errors->has('item_description') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="item_description">{{ __('Item Description') }}</label>
-                                            <textarea id="item_description" name="item_description" class="form-control form-control-alternative{{ $errors->has('item_description') ? ' is-invalid' : '' }}" placeholder="{{ __('Item Description here ... ') }}" value="{{ old('item_description', $item->description) }}" required autofocus rows="3">{{ old('item_description', $item->description) }}</textarea>
+                                            <textarea id="item_description" name="item_description" class="form-control form-control-alternative{{ $errors->has('item_description') ? ' is-invalid' : '' }}" placeholder="{{ __('Item Description here ... ') }}" value="{{ old('item_description', $item->description) }}" autofocus rows="3">{{ old('item_description', $item->description) }}</textarea>
                                             @if ($errors->has('item_description'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('item_description') }}</strong>
@@ -106,7 +106,7 @@
                                             @if ($errors->has('item_price'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('item_price') }}</strong>
-                                                </span>
+                                                </span> 
                                             @endif
                                         </div>
                                         @include('partials.input',['id'=>'discounted_price','name'=>__('Discounted price'),'placeholder'=>__('0'),'value'=>$item->discounted_price,'required'=>false,'type'=>'number'])
@@ -121,6 +121,10 @@
                                         <?php $image=['name'=>'item_image','label'=>__('Item Image'),'value'=> $item->logom,'style'=>'width: 290px; height:200']; ?>
                                         @include('partials.images',$image)
                                         @include('partials.toggle',['id'=>'itemAvailable','name'=>'Item available','checked'=>($item->available == 1)])
+                                        @include('partials.toggle',['id'=>'featured','name'=>'Featured','checked'=>($item->featured == 1)])
+                                        @include('partials.toggle',['id'=>'send_order_notification','name'=>'Enable order notification','checked'=>($item->send_order_notification==1)])
+                                        @include('partials.toggle',['id'=>'pay_tru_menu','name'=>'Enable order payment','checked'=>($item->pay_tru_menu==1)])
+                                        @include('partials.toggle',['id'=>'no_ordering','name'=>'Enable view item only','checked'=>($item->no_ordering==1)])
                                         @include('partials.toggle',['id'=>'has_variants','name'=>'Enable variants','checked'=>($item->has_variants==1)])
                                         @if($item->has_variants==1)
                                             @include('partials.toggle',['additionalInfo'=>' Missing variants will have the same price as the item','id'=>'enable_system_variants','name'=>'Enable System Variants (Beta)','checked'=>($item->enable_system_variants==1)])

@@ -28,6 +28,7 @@
             $this->printer->initialize();
             $this->printHeder();
             $this->printClient();
+            $this->printComment();
             $this->printTable();
             $this->printItemsForKOT();
             $this->printTotals();
@@ -44,6 +45,7 @@
             $this->printer->initialize();
             $this->printHeder();
             $this->printClient();
+            $this->printComment();
             $this->printAddress();
             $this->printTable();
             $this->printPaymentStatus();
@@ -114,7 +116,16 @@
             $this->printLine();
         }
 
-        
+        private function printComment(){
+            $this->printer->setEmphasis(true);
+                $this->printer->feed();
+                $this->printer->text(__("Comment").":");
+                $this->printer->feed();
+                $this->printer->text($this->order->comment);
+                $this->printer->feed();
+                $this->printer->setEmphasis(false);
+                $this->printer->feed();
+        }
 
         private function printClient(){
             if($this->order->client){
@@ -124,21 +135,35 @@
                 $this->printer->feed();
                 $this->printer->text($this->order->client->name);
                 $this->printer->feed();
-                $this->printer->text($this->order->client->phone);
+                $this->printer->text(__("Phone").":".$this->order->client->phone);
                 $this->printer->feed();
                 $this->printer->setEmphasis(false);
                 $this->printer->feed();
             }else{
+                
                 $this->printer->setEmphasis(true);
                 $this->printer->feed();
                 $this->printer->text(__("Customer").":");
                 $this->printer->feed();
-                $this->printer->text($this->order->getConfig('client_name',""));
-                $this->printer->feed();
-                $this->printer->text($this->order->getConfig('client_phone',""));
-                $this->printer->feed();
+                if($this->order->getConfig('client_name',"")!=null){
+                    $this->printer->text($this->order->getConfig('client_name',""));
+                    $this->printer->feed();
+                }
+                
+                //Phones
+                if($this->order->getConfig('client_phone',"")!=null){
+                    $this->printer->text(__("Phone").":".$this->order->getConfig('client_phone',""));
+                    $this->printer->feed();
+                }
+                if(strlen($this->order->phone)>2){
+                    $this->printer->text(__("Phone").":".$this->order->phone);
+                    $this->printer->feed();
+                }
                 $this->printer->setEmphasis(false);
                 $this->printer->feed();
+                
+               
+                
             }
             
         }
@@ -329,12 +354,7 @@
                 define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
             }
 
-            $imploded=null;
-            try {
-                $imploded=implode($allLines, "\n") . "\n";
-            } catch (\Exception $e) {
-                $imploded=implode("\n",$allLines) . "\n";
-            }
+            $imploded=implode("\n",$allLines) . "\n";
             return $imploded;
 
         

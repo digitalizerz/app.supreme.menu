@@ -101,6 +101,11 @@ class DriverController extends Controller
         //Create the driver
         $generatedPassword = Str::random(10);
 
+        //In demo mode, pass is secret
+        if(config('settings.is_demo',false)){
+            $generatedPassword="secret";
+        }
+
         $driver = new User;
         $driver->name = strip_tags($request->name_driver);
         $driver->email = strip_tags($request->email_driver);

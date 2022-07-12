@@ -119,7 +119,7 @@
               @isset($restorant)
                 
                 @if(config('app.isqrsaas'))
-                  @if(!$restorant->getConfig('disable_callwaiter', 0) && strlen(config('broadcasting.connections.pusher.app_id')) > 2 && strlen(config('broadcasting.connections.pusher.key')) > 2 && strlen(config('broadcasting.connections.pusher.secret')) > 2&&!config('settings.is_pos_cloud_mode'))
+                  @if(\Request::route()->getName() != "cart.checkout" && !$restorant->getConfig('disable_callwaiter', 0) && strlen(config('broadcasting.connections.pusher.app_id')) > 2 && strlen(config('broadcasting.connections.pusher.key')) > 2 && strlen(config('broadcasting.connections.pusher.secret')) > 2&&!config('settings.is_pos_cloud_mode'))
                     <a type="button" class="nav-link" data-toggle="modal" data-target="#modal-form">
                       <span class="btn-inner--icon">
                         <i class="fa fa-bell"></i>

@@ -61,6 +61,14 @@
         $currency=config('settings.cashier_currency');
         $convert=config('settings.do_convertion');
     ?>
+
+    @if ($order->driver)
+        @hasrole('admin|owner|staff')
+            <h6 class="heading-small text-muted mb-4">{{ __('Driver') }}</h6>
+            <p><a href="/drivers/{{ $order->driver->id}}/edit">{{ $order->driver->name }}</a></p>
+            <hr class="my-4" />
+        @endhasanyrole
+    @endif
      @if(count($order->items)>0)
      <h6 class="heading-small text-muted mb-4">{{ __('Order') }}</h6>
      

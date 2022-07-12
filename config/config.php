@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'version' => '3.2.1',
+    'version' => '3.2.2',
     'env'=>[
         [
             'name'=>'Setup',
@@ -35,7 +35,10 @@ return [
                 ['title'=>'Is your project multi city', 'help'=>'When selected, the front page will display list of cities', 'key'=>'MULTI_CITY', 'value'=>'true', 'ftype'=>'bool', 'onlyin'=>'ft'],
                 ['title'=>'Single mode - run this site for one vendor only', 'key'=>'SINGLE_MODE', 'value'=>'false', 'ftype'=>'bool', 'onlyin'=>'ft'],
                 ['title'=>'The id of the vendor for single mode', 'help'=>'If you have single mode selected, than this vendor id will be show', 'key'=>'SINGLE_MODE_ID', 'value'=>'1', 'type'=>'number', 'onlyin'=>'ft'],
-                ['title'=>'Enable import via CSV for vendor items', 'key'=>'ENABLE_IMPORT_CSV', 'value'=>'false', 'ftype'=>'bool'],  
+                ['title'=>'Enable import via CSV for vendor items', 'key'=>'ENABLE_IMPORT_CSV', 'value'=>'false', 'ftype'=>'bool'],
+                ['title'=>'Send order email notification on vendor email ( Can be configured per vendor via apps )', 'key'=>'ENABLE_SEND_ORDER_MAIL_TO_VENDOR', 'value'=>'false', 'ftype'=>'bool'],  
+                
+                
                 ['separator'=>'Delivery costs', 'title'=>'Enable cost per distance', 'key'=>'ENABLE_COST_PER_DISTANCE', 'value'=>'false', 'ftype'=>'bool', 'onlyin'=>'ft'],
                 ['title'=>'Cost per kilometer', 'key'=>'COST_PER_KILOMETER', 'value'=>'1', 'onlyin'=>'ft'],
                 ['title'=>'Enable cost based on range', 'help'=>'If you have enable cost based on range, the delivery cost will be calculated based on what range the distance for delivery is in', 'key'=>'ENABLE_COST_IN_RANGE', 'value'=>'false', 'ftype'=>'bool', 'onlyin'=>'ft'],

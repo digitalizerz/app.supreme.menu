@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form  id="registerform" method="post" action="{{ route('newrestaurant.store') }}" autocomplete="off">
+                        <form  id="{{ getFormId() }}" method="post" action="{{ route('newrestaurant.store') }}" autocomplete="off">
                             @csrf
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Restaurant information') }}</h6>

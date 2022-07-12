@@ -63,7 +63,7 @@
                     <div class="col-12">
                         @include('partials.flash')
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pt-0">
                         @if(count($categories)==0)
                             <div class="col-lg-3" >
                                 <a  data-toggle="modal" data-target="#modal-items-category" data-toggle="tooltip" data-placement="top" title="{{ __('Add new category')}}">
@@ -83,8 +83,11 @@
                         <div class="alert alert-default">
                             <div class="row">
                                 <div class="col">
-                                    <span class="h1 font-weight-bold mb-0 text-white">{{ $category->name }}</span>
+                                    <a data-toggle="collapse" href="#myCollapseExample{{$loop->iteration}}" aria-expanded="false" aria-controls="myCollapseExample">
+                                     <span class="h2 font-weight-bold mb-0 text-dark"> <i class="fa fa-bars pr-3"></i> {{ $category->name }}</span>
+                                    </a>
                                 </div>
+
                                 <div class="col-auto">
                                     <div class="row">
                                         <script>
@@ -98,15 +101,15 @@
 
                                         </script>
                                         @if($canAdd)
-                                            <button class="btn btn-icon btn-1 btn-sm btn-primary" type="button" data-toggle="modal" data-target="#modal-new-item" data-toggle="tooltip" data-placement="top" title="{{ __('Add item') }} in {{$category->name}}" onClick=(setSelectedCategoryId({{ $category->id }})) >
+                                            <button class="btn btn-icon btn-1 btn-sm btn-success" type="button" data-toggle="modal" data-target="#modal-new-item" data-toggle="tooltip" data-placement="top" title="{{ __('Add item') }} in {{$category->name}}" onClick=(setSelectedCategoryId({{ $category->id }})) >
                                                 <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                             </button>
                                         @else
                                             <a href="{{ route('plans.current')}}" class="btn btn-icon btn-1 btn-sm btn-warning" type="button"  >
-                                                <span class="btn-inner--icon"><i class="fa fa-plus"></i> {{ __('Menu size limit reaced') }}</span>
+                                                <span class="btn-inner--icon"><i class="fa fa-plus"></i> {{ __('Menu size limit reached') }}</span>
                                             </a>
                                         @endif
-                                        <button class="btn btn-icon btn-1 btn-sm btn-warning" type="button" id="edit" data-toggle="modal" data-target="#modal-edit-category" data-toggle="tooltip" data-placement="top" title="{{ __('Edit category') }} {{ $category->name }}" data-id="<?= $category->id ?>" data-name="<?= $category->name ?>" >
+                                        <button class="btn btn-icon btn-1 btn-sm btn-info" type="button" id="edit" data-toggle="modal" data-target="#modal-edit-category" data-toggle="tooltip" data-placement="top" title="{{ __('Edit category') }} {{ $category->name }}" data-id="<?= $category->id ?>" data-name="<?= $category->name ?>" >
                                             <span class="btn-inner--icon"><i class="fa fa-edit"></i></span>
                                         </button>
 
@@ -126,7 +129,7 @@
 
                                          <!-- UP -->
                                          @if ($index!=0)
-                                            <a href="{{ route('items.reorder',['up'=>$category->id]) }}"  class="btn btn-icon btn-1 btn-sm btn-success" >
+                                            <a href="{{ route('items.reorder',['up'=>$category->id]) }}"  class="btn btn-icon btn-1 btn-sm btn-reorder" >
                                                 <span class="btn-inner--icon"><i class="fas fa-arrow-up"></i></span>
                                             </a>
                                          @endif
@@ -134,7 +137,7 @@
 
                                         <!-- DOWN -->
                                         @if ($index+1!=count($categories))
-                                            <a href="{{ route('items.reorder',['up'=>$categories[$index+1]->id]) }}" class="btn btn-icon btn-1 btn-sm btn-success">
+                                            <a href="{{ route('items.reorder',['up'=>$categories[$index+1]->id]) }}" class="btn btn-icon btn-1 btn-sm btn-reorder">
                                                 <span class="btn-inner--icon"><i class="fas fa-arrow-down"></i></span>
                                             </a>
                                         @endif
@@ -145,27 +148,28 @@
                         </div>
                         @endif
                         @if($category->active == 1)
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center collapse" id="myCollapseExample{{$loop->iteration}}">
                             <div class="col-lg-12">
                                 <div class="row row-grid">
                                     @foreach ( $category->items as $item)
                                         <div class="col-lg-3">
                                             <a href="{{ route('items.edit', $item) }}">
                                                 <div class="card">
-                                                    <img class="card-img-top" src="{{ $item->logom }}" alt="...">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title text-primary text-uppercase">{{ $item->name }}</h3>
-                                                        <p class="card-text description mt-3">{{ $item->description }}</p>
-
-                                                        <span class="badge badge-primary badge-pill">@money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))</span>
-
-                                                        <p class="mt-3 mb-0 text-sm">
+                                                  <!--  <img class="card-img-top" src="{{ $item->logom }}" alt="..."> -->
+                                                    <div class="card-body p-2">
+                                                        <h5 class="card-title text-primary text-uppercase mb-0">{{ $item->name }}</h5>
+                                                      <!--  <p class="card-text description mt-3">{{ $item->description }}</p> -->
+                                                        <div class="row item-availability m-0">
+                                                        <p class="mt-2 mb-0 text-sm">
                                                             @if($item->available == 1)
-                                                            <span class="text-success mr-2">{{ __("AVAILABLE") }}</span>
+                                                            <span class="text-success mr-2">{{ __("Available") }}</span>
                                                             @else
-                                                            <span class="text-danger mr-2">{{ __("UNAVAILABLE") }}</span>
+                                                            <span class="text-danger mr-2">{{ __("Unavailable") }}</span>
                                                             @endif
                                                         </p>
+
+                                                        <span class="mt-2 mb-0 text-sm card-item-price">@money($item->price, config('settings.cashier_currency'),config('settings.do_convertion'))</span>
+                                                     </div>
                                                     </div>
                                                 </div>
                                                 <br/>
@@ -175,10 +179,10 @@
                                     @if($canAdd)
                                     <div class="col-lg-3" >
                                         <a   data-toggle="modal" data-target="#modal-new-item" data-toggle="tooltip" data-placement="top" href="javascript:void(0);" onclick=(setSelectedCategoryId({{ $category->id }}))>
-                                            <div class="card">
-                                                <img class="card-img-top" src="{{ asset('images') }}/default/add_new_item.jpg" alt="...">
+                                            <div class="card add-item-card">
+                                              <!--  <img class="card-img-top" src="{{ asset('images') }}/default/add_new_item.jpg" alt="..."> -->
                                                 <div class="card-body">
-                                                    <h3 class="card-title text-primary text-uppercase">{{ __('Add item') }}</h3>
+                                                    <h5 class="card-title text-primary text-uppercase text-center text-white mb-0">{{ __('+ Add item') }}</h5>
                                                 </div>
                                             </div>
                                         </a>

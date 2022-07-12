@@ -72,7 +72,7 @@
         @if(config('settings.enable_guest_log'))
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.restaurant.visits.index') }}">
-                <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Marketing') }}
+                <i class="ni ni-calendar-grid-58 text-blue"></i> {{ __('Customers log') }}
             </a>
         </li>
         @endif
@@ -113,7 +113,7 @@
         @endif
 
 
-    @if (!config('settings.is_pos_cloud_mode'))
+    @if (!config('settings.is_pos_cloud_mode')&&!config('app.issd'))
         <li class="nav-item">
             <a class="nav-link" href="{{ route('share.menu') }}">
                 <i class="ni ni-send text-green"></i> {{ __('Share') }}

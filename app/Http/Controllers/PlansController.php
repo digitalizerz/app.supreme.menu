@@ -24,7 +24,12 @@ class PlansController extends Controller
         $theSelectedProcessor=strtolower(config('settings.subscription_processor','stripe'));
 
 
-        if(!($theSelectedProcessor == 'stripe' || $theSelectedProcessor == 'local')&&auth()->user()->plan_status!="set_by_admin" ){
+        if(
+            !($theSelectedProcessor == 'stripe' || $theSelectedProcessor == 'local')&&
+            auth()->user()->plan_status!="set_by_admin"&&
+            !config('settings.is_demo') &&
+            config('app.url')!="http://localhost")
+            {
             $className = '\Modules\\'.ucfirst($theSelectedProcessor).'Subscribe\Http\Controllers\App';
             $ref = new \ReflectionClass($className);
             $ref->newInstanceArgs()->validate(auth()->user());
@@ -45,7 +50,7 @@ class PlansController extends Controller
         ];
 
         
-        if ($theSelectedProcessor == 'stripe') {
+        if ($theSelectedProcessor == 'stripe'&&config('app.url')!="http://localhost") {
             $data['intent'] = auth()->user()->createSetupIntent();
         }
 

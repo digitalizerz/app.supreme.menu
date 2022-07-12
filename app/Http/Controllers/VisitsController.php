@@ -288,10 +288,12 @@ class VisitsController extends Controller
     public function register($restaurant_id)
     {
         $restaurant = Restorant::findOrFail($restaurant_id);
+        
 
-        return view('general.form_front', ['setup' => [
+        return view('general.form_front_luxe', ['setup' => [
             'inrow'=>true,
             'action_link'=>route('vendor', ['alias'=>$restaurant->subdomain]),
+            'restaurant_name'=>$restaurant->name,
             'action_name'=>__('crud.back'),
             'title'=>__('crud.new_item', ['item'=>__($this->title)]),
             'iscontent'=>true,

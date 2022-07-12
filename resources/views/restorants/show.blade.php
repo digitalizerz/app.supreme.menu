@@ -8,6 +8,9 @@
 <meta property="og:image:height" content="400">
 <meta name="og:title" property="og:title" content="{{ $restorant->name }}">
 <meta name="description" content="{{ $restorant->description }}">
+@if (\Akaunting\Module\Facade::has('googleanalytics'))
+    @include('googleanalytics::index') 
+@endif
 @endsection
 
 @section('content')
@@ -18,6 +21,7 @@
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
      }
 ?>
+
 @include('restorants.partials.modals')
 
     <section class="section-profile-cover section-shaped grayscale-05 d-none d-md-none d-lg-block d-lx-block">

@@ -16,7 +16,7 @@ class Restorant extends MyModel
     use HasConfig;
 
     protected $modelName="App\Restorant";
-    protected $fillable = ['name', 'subdomain', 'user_id', 'lat', 'lng', 'address', 'phone', 'logo', 'description', 'city_id'];
+    protected $fillable = ['name', 'subdomain', 'user_id', 'lat', 'lng', 'address', 'phone', 'logo', 'description', 'city_id', 'send_order_notification', 'pay_tru_menu','no_ordering'];
     protected $appends = ['alias', 'logom', 'icon', 'coverm'];
     protected $imagePath = '/uploads/restorants/';
     protected $table="companies";
@@ -132,6 +132,18 @@ class Restorant extends MyModel
            
         }
 
+        // dd($this->pay_tru_menu);
+
+        if($planInfo['canMakeNewOrder']){
+            if($this->pay_tru_menu){
+                $planInfo['canMakeNewOrder'] = true;
+            }else{
+                if($this->no_ordering){
+                    $planInfo['canMakeNewOrder'] = false;
+                }
+            }
+        }
+
         $plugins=$currentPlan->getConfig('plugins',null);
         
         if($plugins){
@@ -190,6 +202,32 @@ class Restorant extends MyModel
     public function categories()
     {
         return $this->hasMany(\App\Categories::class, 'restorant_id', 'id')->where(['categories.active' => 1])->ordered();
+    }
+
+    public function featured_items()
+    {
+        $ids = $this->categories()->pluck('id');
+      return  $items = Items::whereIn('category_id', $ids)->where('featured',1)->get();
+        return $items;
+    }
+
+    public function getSendOrderNotificationAttribute($value)
+    {
+        if($this->pay_tru_menu){
+            return 1;
+        }else{
+            return $value;
+        }
+    }
+    public function getNoOrderingAttribute($value)
+    {
+        if($this->pay_tru_menu || $this->send_order_notification){
+            return 0;
+        }elseif(!$this->pay_tru_menu && !$this->send_order_notification){
+            return 1;
+        }else{
+            return  $value;
+        }
     }
 
     public function localmenus()

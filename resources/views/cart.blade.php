@@ -104,10 +104,13 @@
                       @include('cart.localorder.table')
 
                       <!-- Local Order Phone -->
+                      @if (!$restorant->send_order_notification)
                       @include('cart.localorder.phone')
-
+                      @endif
                       <!-- Custom Fields -->
                       @include('cart.customfields')
+
+                    
 
                       <!-- Comment -->
                       @include('cart.comment')

@@ -8,8 +8,12 @@ class WebhookOrder
     private function notify($order,$webhook){
         $client = new \GuzzleHttp\Client();
 
+        $dataToSend=$order->toArray();
+        $dataToSend['custom_fields']=$order->getAllConfigs();
+        $dataToSend['items']=$order->items->toArray();
+
         $payload = [
-            'form_params' => $order->toArray(),
+            'form_params' => $dataToSend,
         ];
 
         $client = new \GuzzleHttp\Client();

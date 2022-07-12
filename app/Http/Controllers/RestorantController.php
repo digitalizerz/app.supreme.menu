@@ -838,7 +838,9 @@ $restaurant=Restorant::findOrFail($restaurantid);
 
         if (config('settings.wildcard_domain_ready')) {
             $vendorURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://').auth()->user()->restorant->subdomain.'.'.str_replace('www.', '', $_SERVER['HTTP_HOST']);
-        } else {
+        }else if(strlen(auth()->user()->restorant->getConfig('domain'))>3){
+            $vendorURL = "https://".auth()->user()->restorant->getConfig('domain');
+        }else {
             $vendorURL = route('vendor', auth()->user()->restorant->subdomain);
         }
 

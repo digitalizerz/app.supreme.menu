@@ -1,0 +1,2 @@
+<div class="row align-items-center justify-content-xl-between">
+</div><?php /**PATH C:\Users\Omen 1 Solutions\Desktop\WEBAPP-SUPREME\httpdocs\supreme.menu\resources\views/layouts/footers/nav.blade.php ENDPATH**/ ?>

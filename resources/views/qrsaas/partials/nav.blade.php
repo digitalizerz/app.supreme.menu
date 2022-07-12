@@ -36,14 +36,14 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#">
                         @foreach ($availableLanguages as $short => $lang)
-                            @if(strtolower($short) == strtolower($locale)) <span>{{ $lang }}</span> @endif
+                            @if(strtolower($short) == strtolower($locale)) <span>{{ __($lang) }}</span> @endif
                         @endforeach
                         <i class="fas fa-angle-down nav-link-arrow ml-2"></i>
                     </a>
                     <ul class="dropdown-menu">
                         @foreach ($availableLanguages as $short => $lang)
                             <li>
-                                <a class="dropdown-item" href="/{{ strtolower($short) }}">{{ $lang }}</a>
+                                <a class="dropdown-item" href="/{{ strtolower($short) }}">{{ __($lang) }}</a>
                             </li>
                         @endforeach
                     </ul>

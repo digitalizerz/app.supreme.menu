@@ -33,6 +33,22 @@ a:hover {
   background-color: transparent;
 }
 
+.item-availability p {
+    padding-right: 2rem;
+    font-weight: 600;
+}
+
+.item-availability .card-item-price {
+    font-weight: 600;
+    color: #000;
+}
+
+.card.add-item-card {
+    background: #28a745;
+}
+
+
+
 @media only screen and (max-width:  768px){
     .card-status-history-driver{
         display: none;
@@ -220,7 +236,7 @@ a:hover {
     }
     [data-timeline-axis-color='success']:before
     {
-        border-color: #2dce89;
+        border-color: #28a745;
     }
     [data-timeline-axis-color='info']:before
     {

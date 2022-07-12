@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasConfig;
+use Akaunting\Module\Facade as Module;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -211,8 +212,13 @@ class Order extends Model
                 //Regular driver
                 return $this->getDriverOrderActions();
             }else{
-                //Driver per specific vendor
-                return $this->getTDriverOrderActions();
+                //Driver per specific vendor -- we need to check if SD
+                if(config('app.issd')){
+                    return $this->getTDriverOrderActions();
+                }else{
+                    return $this->getDriverOrderActions();
+                }
+                
             }
            
         }else if (auth()->user()->hasRole('owner')) {
@@ -300,7 +306,16 @@ class Order extends Model
             }else if(in_array($lastStatusAlias,["accepted_by_restaurant"])){
                 return ["buttons"=>['prepared'],'message'=>""];
             }else if(in_array($lastStatusAlias,["prepared"])){
-                return ["buttons"=>['delivered'],'message'=>""];
+                //In this case we can assign to driver if we have the driver module
+                if(Module::has('drivers')){
+                    return ["buttons"=>['delivered','assigned_to_driver'],'message'=>""];
+                }else{
+                    //No Drivers
+                    return ["buttons"=>['delivered'],'message'=>""];
+                } 
+            }else if(in_array($lastStatusAlias,["assigned_to_driver"])){
+                //In this case we can re-assign or deliver it
+                return ["buttons"=>['delivered','assigned_to_driver'],'message'=>""];
             }else if(in_array($lastStatusAlias,["delivered"])){
                 return ["buttons"=>['closed'],'message'=>""];
             }

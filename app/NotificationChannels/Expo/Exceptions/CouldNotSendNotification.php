@@ -1,6 +1,6 @@
 <?php
 
-namespace NotificationChannels\Expo\Exceptions;
+namespace App\NotificationChannels\Expo\Exceptions;
 
 use Exception;
 use GuzzleHttp\Exception\ClientException;

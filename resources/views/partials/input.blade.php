@@ -1,6 +1,6 @@
 @isset($separator)
     <br />
-    <h4 class="display-4 mb-0">{{ __($separator) }}</h4>
+    <h4 id="sep{{ $id }}" class="display-4 mb-0">{{ __($separator) }}</h4>
     <hr />
 @endisset
 <div id="form-group-{{ $id }}" class="form-group{{ $errors->has($id) ? ' has-danger' : '' }}  @isset($class) {{$class}} @endisset">

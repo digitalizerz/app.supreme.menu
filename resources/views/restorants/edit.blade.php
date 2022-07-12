@@ -64,7 +64,7 @@
                                     <a href="{{ route('admin.restaurants.index') }}"
                                         class="btn btn-sm btn-info">{{ __('Back to list') }}</a>
                                     @endif
-                                    @if (!config('settings.is_pos_cloud_mode'))
+                                    @if (!config('settings.is_pos_cloud_mode')&&!config('app.issd'))
                                         @if (config('settings.wildcard_domain_ready'))
                                         <a target="_blank" href="{{ $restorant->getLinkAttribute() }}"
                                             class="btn btn-sm btn-success">{{ __('View it') }}</a>
@@ -72,9 +72,10 @@
                                         <a target="_blank" href="{{ route('vendor',$restorant->subdomain) }}"
                                             class="btn btn-sm btn-success">{{ __('View it') }}</a>
                                         @endif
-                                        @if ($hasCloner)
-                                            <a href="{{ route('admin.restaurants.create')."?cloneWith=".$restorant->id }}" class="btn btn-sm btn-warning text-white">{{ __('Clone it') }}</a>
-                                        @endif
+                                       
+                                    @endif
+                                    @if ($hasCloner)
+                                        <a href="{{ route('admin.restaurants.create')."?cloneWith=".$restorant->id }}" class="btn btn-sm btn-warning text-white">{{ __('Clone it') }}</a>
                                     @endif
                                         
 

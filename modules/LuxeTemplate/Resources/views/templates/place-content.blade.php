@@ -1,4 +1,30 @@
 <!-- section-place-content -->
+
+@if(count($restorant->featured_items()) > 0)
+<section class=" pt-lg-0 mt-2 mb--5" style="margin-bottom: 10px">
+    <div class="container-fluid featured">
+        <h4 class="font-weight-bold featured-items-title mb-2">Featured Items</h4>
+        <div class="d-flex flex-row flex-nowrap overflow-auto">
+            @foreach($restorant->featured_items() as $a_item)
+                <a onClick="setCurrentItem({{ $a_item->id }})" href="javascript:void(0)">
+            <div  class="card card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="{{ $a_item->logom }}" />
+                        <h6 class="font-weight-bold">{{ $a_item->name }}</h6>
+                    </div>
+                   <!--  <div class="col-12">
+                        <p>{{ $a_item->name }}</p>
+                    </div> -->
+                </div>
+            </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 <section class='section section-place-content'>
     <div class='bg-white nav-menu sticky_horizontal'>
         <div class='packer'>
@@ -15,6 +41,9 @@
             </div>
         </div>
     </div>
+
+   
+
     <div class='packer'>
         <div class='package'>
             <div class='content'>
@@ -74,7 +103,7 @@
                     </div>
                     <div class="col-xl-3">
                         @if ($canDoOrdering)
-                        <div class="btn_reserve_fixed"><a href="#0" class="btn_1 gradient full-width" id="theCartBottomButton" onClick="openNav()" >{{ __('Order Summary') }} </a></div>
+                        <div class="btn_reserve_fixed"><a href="#0" class="btn_1 btn-black gradient full-width" id="theCartBottomButton" onClick="openNav()" >{{ __('Order Summary') }} </a></div>
                         @endif
                         <div class='holder-right mb-3'>
                             @if ($canDoOrdering)

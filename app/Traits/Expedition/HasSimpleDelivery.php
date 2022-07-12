@@ -10,6 +10,9 @@ trait HasSimpleDelivery
     public function expeditionRules(){
         return [
             'deliveryAreaId' => ['required','not_in:0']
+            //,'address_id' => ['required','string'],
+            //'customFields.client_name' =>['required'],
+            //'customFields.client_phone' =>['required']
         ];
     }
 

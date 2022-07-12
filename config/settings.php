@@ -107,6 +107,7 @@ return [
     'twilio_from' => env('TWILIO_FROM', ''),
     'playstore' => env('PLAYSTORE', ''),
     'appstore' => env('APPSTORE', ''),
+    'send_order_email_to_vendor'=>env('ENABLE_SEND_ORDER_MAIL_TO_VENDOR',false),
     'demo_data' => env('DEMO_DATA', true),
     'admin_name' => env('ADMIN_NAME', 'Admin Admin'),
     'admin_email' => env('ADMIN_EMAIL', 'admin@example.com'),

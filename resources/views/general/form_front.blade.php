@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ $setup['action'] }}" method="POST" enctype="multipart/form-data">
+                        <form id="{{ getFormId() }}" action="{{ $setup['action'] }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @isset($setup['isupdate'])
                                 @method('PUT')
