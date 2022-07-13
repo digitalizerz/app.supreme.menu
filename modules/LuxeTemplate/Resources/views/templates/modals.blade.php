@@ -53,6 +53,7 @@
             @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   )
             <div class="modal-footer" id="ordering">
                 <div class="footer-area">
+                    <!-- uncommented footer by Lovemore -->
                   <!--  <div class="d-flex product-price justify-content-between align-items-start mb-4">
                         <div id="price-area" class="py-2">
                             <h6>{{ __('Price' ) }}</h6> 
