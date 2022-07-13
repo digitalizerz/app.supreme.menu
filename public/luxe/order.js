@@ -318,8 +318,13 @@ function setCurrentItem(id) {
     }
     
     if(item.no_ordering > 0){
-        $('#addToCart1').hide();
+        $('#ordering').hide();
     }
+
+    if(item.send_order_notification > 0){
+        $('#ordering').show();
+    }
+
 
    
 

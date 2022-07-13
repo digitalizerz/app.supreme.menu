@@ -53,18 +53,19 @@
             @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   )
             <div class="modal-footer" id="ordering">
                 <div class="footer-area">
-                  <!--  <div class="d-flex product-price justify-content-between align-items-start mb-4">
-                        <div id="price-area" class="py-2">
+                    <div class="d-flex product-price justify-content-between align-items-start mb-4">
+                      <!--  <div id="price-area" class="py-2">
                             <h6>{{ __('Price' ) }}</h6> 
                             <h3 id="modalPrice" class="new-price mt-2 mb-0"></h3>
-                        </div>
+                        </div> -->
                         <div class="quantity-area py-2">
                             <h6>{{ __('Quantity' ) }}</h6>
                             <div class="numbers-row">
                                 <input type="number" value="1" id="quantity" class="qty2 form-control" name="quantity" placeholder="1" min="1" step="1"  autofocus required >
                             </div>                                
                         </div>
-                    </div> -->
+                    </div> 
+
                     <div class="quantity-btn btn-block">
                         <div id="addToCart1">
                             <button class="btn btn-primary btn-block" v-on:click='addToCartAct'>{{ __('Add To Cart') }}</button>
