@@ -260,7 +260,7 @@
         var IS_POS=false;
         var TEMPLATE_USED="<?php echo config('settings.front_end_template','defaulttemplate') ?>";
     </script>
-    <script src="{{ asset('custom') }}/js/order.js"></script>
+    <script defer src="{{ asset('custom') }}/js/order.js"></script>
     @include('restorants.phporderinterface') 
     @if (isset($showGoogleTranslate)&&$showGoogleTranslate&&!$showLanguagesSelector)
         @include('googletranslate::scripts')

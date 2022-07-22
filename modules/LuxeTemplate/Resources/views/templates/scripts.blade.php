@@ -5,8 +5,8 @@
     <script src="{{ asset('vendor') }}/select2/select2.min.js"></script>
     <!-- cartFunctions.js and order.js was modified by @aleksiralda using V3.1.3 -->
     <script src="{{ asset('luxe') }}/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('luxe') }}/cartFunctions.js"></script>
-    <script src="{{ asset('luxe') }}/order.js"></script>
+    <script defer src="{{ asset('luxe') }}/cartFunctions.js"></script>
+    <script defer src="{{ asset('luxe') }}/order.js"></script>
 
     <script src="{{ asset('custom') }}/js/js.js"></script>
 

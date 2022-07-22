@@ -83,7 +83,7 @@ Support: https://www.reddit.com/user/aleksiralda
     <script src="{{ asset('luxe') }}/select2.js"></script>
 
     <script src="{{ asset('luxe') }}/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('custom') }}/js/cartFunctions.js"></script>
+    <script defer src="{{ asset('custom') }}/js/cartFunctions.js"></script>
     <script src="{{ asset('custom') }}/js/cartSideMenu.js"></script>
     <script src="{{ asset('custom') }}/js/notify.min.js"></script>
 
