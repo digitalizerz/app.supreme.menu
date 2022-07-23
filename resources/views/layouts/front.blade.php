@@ -142,7 +142,7 @@ Coded by www.creative-tim.com
         var PUSHER_APP_KEY = "{{ config('broadcasting.connections.pusher.key') }}";
         var PUSHER_APP_CLUSTER = "{{ config('broadcasting.connections.pusher.options.cluster') }}";
     </script>
-    <script defer src="{{ asset('custom') }}/js/cartFunctions.js"></script>
+    <script src="{{ asset('custom') }}/js/cartFunctions.js"></script>
 
 
     <!-- Cart custom sidemenu -->
