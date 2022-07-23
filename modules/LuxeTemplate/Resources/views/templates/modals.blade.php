@@ -15,12 +15,12 @@
                                 <img id="modalImg" src="" width="100%">
                             </figure>
                         </div>
-                    </div>                                
+                    </div>
                     <div class="col-12" id="modalItemDetailsPart">
                         <div class="pt-5 pb-3 px-6">
                         <div class="row">
-                          <div class="col-md-8"> 
-                            <h4 id="modalTitle" class="modal-title mb-2" id="modal-title-new-item"></h4> 
+                          <div class="col-md-8">
+                            <h4 id="modalTitle" class="modal-title mb-2" id="modal-title-new-item"></h4>
                         </div>
                         <div class="col-md-4">
                         <h4 id="modalPrice" class="new-price mt-2 mb-0"></h4>
@@ -29,7 +29,7 @@
                             <p id="modalDescription" class="mb-6"></p>
                             <input id="modalID" type="hidden"></input>
                             <div class="price-modal">
-                                
+
                             </div>
                             <div id="variants-area">
                                 <label class="form-control-label mb-3">{{ __('Select your options') }}</label>
@@ -50,21 +50,21 @@
                     </div>
                 </div>
             </div>
-            @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   )
+            {{-- @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   ) --}}
             <div class="modal-footer" id="ordering">
                 <div class="footer-area">
                     <div class="d-flex product-price justify-content-between align-items-start mb-4">
                       <!--  <div id="price-area" class="py-2">
-                            <h6>{{ __('Price' ) }}</h6> 
+                            <h6>{{ __('Price' ) }}</h6>
                             <h3 id="modalPrice" class="new-price mt-2 mb-0"></h3>
                         </div> -->
                         <div class="quantity-area py-2">
                             <h6>{{ __('Quantity' ) }}</h6>
                             <div class="numbers-row">
                                 <input type="number" value="1" id="quantity" class="qty2 form-control" name="quantity" placeholder="1" min="1" step="1"  autofocus required >
-                            </div>                                
+                            </div>
                         </div>
-                    </div> 
+                    </div>
 
                     <div class="quantity-btn btn-block">
                         <div id="addToCart1">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+            {{-- @endif --}}
         </div>
     </div>
 </div>
@@ -131,7 +131,7 @@
                                     <br/>
                                     <h5>{{ count($restorant->ratings) }} {{ count($restorant->ratings) == 1 ? __('Review') : __('Reviews')}}</h5>
                                     <hr />
-                                    
+
                                     @foreach($restorant->ratings as $rating)
                                         <div class="strip">
                                             <span class="res_title"><b>{{ $rating->user->name }}</b></span><span class="float-right"><i class="fa fa-star" style="color: #dc3545"></i> <strong>{{ number_format($rating->rating, 1, '.', ',') }} <span class="small">/ 5</strong></span></span><br />
@@ -181,7 +181,7 @@
                         @foreach ($hours as $timeRange)
                             <div class='hours'>{{ $timeRange->start() }} - {{ $timeRange->end() }} </div>
                         @endforeach
-                        
+
                     </li>
                 @endforeach
             </ol>
