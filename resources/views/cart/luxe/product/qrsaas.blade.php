@@ -1,5 +1,12 @@
 <!-- QRSAAS -->
 <!-- DINE IN OR TAKEAWAY -->
+<style>
+    @media only screen and (max-width:600px){
+        #order-detail{
+            margin: 9px 18px -23px -1px;
+        }
+    }
+</style>
 @if (config('settings.enable_pickup'))
   <div class="row">
     <div class="col-12 col-md-3">
@@ -48,7 +55,7 @@
   </div>
 @else
 <!-- Simple QR -->
-  <div class="row">
+  <div class="row" id="order-detail">
     <div class="col-12 col-md-3">
       <h5 class="text-muted">01</h5>
       <h4 class="uppercase">{{ __('Order Details') }}</h4>

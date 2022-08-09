@@ -21,12 +21,12 @@ Support: https://www.reddit.com/user/aleksiralda
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $restorant->name }}</title>
-    
+
     <meta property="og:image" content="{{ $restorant->logom }}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="590">
     <meta property="og:image:height" content="400">
-    
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -37,7 +37,7 @@ Support: https://www.reddit.com/user/aleksiralda
 
     @yield('extrameta')
     @if (\Akaunting\Module\Facade::has('googleanalytics'))
-        @include('googleanalytics::index') 
+        @include('googleanalytics::index')
     @endif
 
     @include('googletagmanager::head')
@@ -45,14 +45,14 @@ Support: https://www.reddit.com/user/aleksiralda
     @laravelPWA
     @notifyCss
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
     <link rel="stylesheet" href="{{ asset('custom') }}/css/select2.min.css">
     <link rel="stylesheet" href="{{ asset('custom') }}/css/custom.css">
     <link rel="stylesheet" href="{{ asset('luxe') }}/bootstrap_customized.min.css">
     <link rel="stylesheet" href="{{ asset('luxe') }}/main.css">
-    
+
     @include('layouts.rtl')
-  
+
     <!-- Custom CSS defined by admin -->
     @if(\Request::route()->getName() != "vendor")
     <link type="text/css" href="{{ asset('byadmin') }}/front.css" rel="stylesheet">
@@ -92,7 +92,7 @@ Support: https://www.reddit.com/user/aleksiralda
     <script src="{{ asset('luxe') }}/select2.js"></script>
 
     <script src="{{ asset('luxe') }}/bootstrap.bundle.min.js"></script>
-    <script defer src="{{ asset('luxe') }}/cartFunctions.js"></script>
+    <script src="{{ asset('luxe') }}/cartFunctions.js"></script>
     <script src="{{ asset('custom') }}/js/cartSideMenu.js"></script>
     <script src="{{ asset('custom') }}/js/notify.min.js"></script>
 

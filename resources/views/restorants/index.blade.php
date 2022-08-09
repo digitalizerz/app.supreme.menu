@@ -51,7 +51,7 @@
                                         @else
                                             <td><a href="{{ route('admin.restaurants.edit', $restorant) }}">{{ $restorant->name }}</a></td>
                                         @endif
-                                       
+
                                         <td><img class="rounded" src={{ $restorant->icon }} width="50px" height="50px"></img></td>
                                         <td>{{  $restorant->user?$restorant->user->name:__('Deleted') }}</td>
                                         <td>

@@ -1,7 +1,7 @@
 
  <!-- Popper -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
- 
+
  <!-- jQuery -->
  <script src="{{ asset('argonfront') }}/js/core/jquery.min.js" type="text/javascript"></script>
 
@@ -13,14 +13,14 @@
     var LOCALE="<?php echo  App::getLocale() ?>";
     var IS_POS=false;
 </script>
-<script defer src="{{ asset('custom') }}/js/cartFunctions.js"></script>
+<script  src="{{ asset('custom') }}/js/cartFunctions.js"></script>
 
 @if (isset($showGoogleTranslate)&&$showGoogleTranslate&&!$showLanguagesSelector)
     @include('googletranslate::scripts')
 @endif
 
- 
- 
+
+
 
 
  <!-- scripts -->
@@ -28,10 +28,10 @@
 
 
  <!-- Custom js -->
- <script defer src="{{ asset('custom') }}/js/order.js"></script>
+ <script  src="{{ asset('custom') }}/js/order.js"></script>
 
  <!-- Interface from PHP items to JS Array -->
- @include('restorants.phporderinterface') 
+ @include('restorants.phporderinterface')
 
  <!-- All in one -->
  <script src="{{ asset('custom') }}/js/js.js?id={{ config('config.version')}}"></script>

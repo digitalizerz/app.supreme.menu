@@ -42,7 +42,7 @@
         </div>
     </div>
 
-   
+
 
     <div class='packer'>
         <div class='package'>
@@ -78,7 +78,7 @@
                                                                         <img  src="{{$allergen->image_link}}" />
                                                                     </div>
                                                                 @endforeach
-                                                                    
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -97,7 +97,7 @@
                                     </div>
 
                                     @endforeach
-                                @endif                            
+                                @endif
                             </div>
                         </div>
                     </div>

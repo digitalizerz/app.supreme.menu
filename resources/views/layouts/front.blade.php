@@ -20,7 +20,7 @@ Coded by www.creative-tim.com
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('argonfront') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('argonfront') }}/img/favicon.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     @yield('extrameta')
     <meta property="og:image" content="{{ config('global.site_logo') }}">
     <title>{{ config('global.site_name','FoodTiger') }}</title>
@@ -62,7 +62,7 @@ Coded by www.creative-tim.com
   @yield('head')
   @laravelPWA
   @include('layouts.rtl')
-  
+
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -142,7 +142,7 @@ Coded by www.creative-tim.com
         var PUSHER_APP_KEY = "{{ config('broadcasting.connections.pusher.key') }}";
         var PUSHER_APP_CLUSTER = "{{ config('broadcasting.connections.pusher.options.cluster') }}";
     </script>
-    <script defer src="{{ asset('custom') }}/js/cartFunctions.js"></script>
+    <script src="{{ asset('custom') }}/js/cartFunctions.js"></script>
 
 
     <!-- Cart custom sidemenu -->

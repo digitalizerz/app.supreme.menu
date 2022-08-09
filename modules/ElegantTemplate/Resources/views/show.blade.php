@@ -20,13 +20,13 @@
             @include('elegant-template::templates.impressum')
         @endif
         @include('elegant-template::templates.footer')
-         
+
     </div>
-   
- 
+
+
     @include('elegant-template::templates.scripts')
-    
-    
+
+
 </body>
 
 </html>

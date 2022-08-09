@@ -9,7 +9,7 @@
 <meta name="og:title" property="og:title" content="{{ $restorant->name }}">
 <meta name="description" content="{{ $restorant->description }}">
 @if (\Akaunting\Module\Facade::has('googleanalytics'))
-    @include('googleanalytics::index') 
+    @include('googleanalytics::index')
 @endif
 @endsection
 
@@ -42,7 +42,7 @@
                     <div class="title white"  <?php if($restorant->description){echo 'style="border-bottom: 1px solid #f2f2f2;"';} ?> >
                         <h1 class="display-3 text-white notranslate" data-toggle="modal" data-target="#modal-restaurant-info" style="cursor: pointer;">{{ $restorant->name }}</h1>
                         <p class="display-4" style="margin-top: 120px">{{ $restorant->description }}</p>
-                        
+
                         <p><i class="ni ni-watch-time"></i> @if(!empty($openingTime))<span class="closed_time">{{__('Opens')}} {{ $openingTime }}</span>@endif @if(!empty($closingTime))<span class="opened_time">{{__('Opened until')}} {{ $closingTime }}</span> @endif |   @if(!empty($restorant->address))<i class="ni ni-pin-3"></i></i> <a target="_blank" href="https://www.google.com/maps/search/?api=1&query={{ urlencode($restorant->address) }}"><span class="notranslate">{{ $restorant->address }}</span></a>  | @endif @if(!empty($restorant->phone)) <i class="ni ni-mobile-button"></i> <a href="tel:{{$restorant->phone}}">{{ $restorant->phone }} </a> @endif</p>
                     </div>
                 </div>
@@ -82,8 +82,8 @@
         <input type="hidden" id="rid" value="{{ $restorant->id }}"/>
         <div class="container container-restorant">
 
-            
-            
+
+
             @if(!$restorant->categories->isEmpty())
         <nav class="tabbable sticky" style="top: {{ config('app.isqrsaas') ? 64:88 }}px;">
                 <ul class="nav nav-pills bg-white mb-2">
@@ -99,13 +99,13 @@
                     @endforeach
                 </ul>
 
-                
+
             </nav>
 
-            
+
             @endif
 
-            
+
 
 
             @if(!$restorant->categories->isEmpty())
@@ -142,13 +142,13 @@
                                                  <img  src="{{$allergen->image_link}}" />
                                              </div>
                                             @endforeach
-                                             
+
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
-                           
+
+
+
                             </div>
                         </div>
                     @endforeach
@@ -167,14 +167,14 @@
             @endif
             <!-- Check if is installed -->
             @if (isset($doWeHaveImpressumApp)&&$doWeHaveImpressumApp)
-                
+
                 <!-- Check if there is value -->
                 @if (strlen($restorant->getConfig('impressum_value',''))>5)
                     <h3>{{  __($restorant->getConfig('impressum_title','')) }}</h3>
                     <?php echo __($restorant->getConfig('impressum_value','')); ?>
                 @endif
             @endif
-            
+
         </div>
 
         @if(  !(isset($canDoOrdering)&&!$canDoOrdering)   )
@@ -231,7 +231,7 @@
     @endsection
     @section('addiitional_button_1_mobile')
         <div class="dropdown mobile_menu">
-           
+
             <a type="button" class="nav-link  dropdown-toggle" data-toggle="dropdown"id="navbarDropdownMenuLink2">
                 <span class="btn-inner--icon">
                   <i class="fa fa-globe"></i>
@@ -260,8 +260,8 @@
         var IS_POS=false;
         var TEMPLATE_USED="<?php echo config('settings.front_end_template','defaulttemplate') ?>";
     </script>
-    <script defer src="{{ asset('custom') }}/js/order.js"></script>
-    @include('restorants.phporderinterface') 
+    <script src="{{ asset('custom') }}/js/order.js"></script>
+    @include('restorants.phporderinterface')
     @if (isset($showGoogleTranslate)&&$showGoogleTranslate&&!$showLanguagesSelector)
         @include('googletranslate::scripts')
     @endif

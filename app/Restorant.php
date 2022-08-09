@@ -45,7 +45,7 @@ class Restorant extends MyModel
     public function getPlanAttribute(){
         $planInfo=[
             'plan'=>null,
-            "canMakeNewOrder"=>false,
+            "canMakeNewOrder"=>true,
             "canAddNewItems"=>false,
             "itemsMessage"=>"",
             "itemsAlertType"=>"success",
@@ -66,12 +66,12 @@ class Restorant extends MyModel
             $currentPlan->period=1;
         }
         $planInfo['plan']=$currentPlan->toArray();
-        
+
 
         //Count items
         $itemsCount = Items::whereIn('category_id', $this->categories->pluck('id')->toArray())->whereNull('deleted_at')->count();
         if ($currentPlan->limit_items != 0) {
-           
+
             $allowedNewItems=$currentPlan->limit_items - $itemsCount;
             $planInfo['canAddNewItems']=$allowedNewItems > 0;
             if($allowedNewItems > 0){
@@ -84,7 +84,7 @@ class Restorant extends MyModel
                 $planInfo['itemsMessage']=__('You can not add more items. Please subscribe to new plan.');
                 $planInfo['itemsAlertType']="danger";
             }
-            
+
         }else{
             //Unlimited items
             $planInfo['itemsMessage']=__('You can add unlimited number of items');
@@ -101,10 +101,10 @@ class Restorant extends MyModel
             $period=Carbon::now()->startOfYear();
         }
         $orderCount=$this->orders->where('created_at','>=',$period)->count();
-        
+
         if ($currentPlan->limit_orders != 0 && $currentPlan->enable_ordering==1) {
             $allowedNewOrders=$currentPlan->limit_orders - $orderCount;
-           
+
             $planInfo['canMakeNewOrder']=$allowedNewOrders > 0;
             if($allowedNewOrders > 0){
                 $planInfo['ordersMessage']=__('You can receive')." ".$allowedNewOrders." ".__('more orders.')." ".__('Total included in this plan').": ".$currentPlan->limit_orders;
@@ -116,8 +116,9 @@ class Restorant extends MyModel
                 $planInfo['ordersMessage']=__('You can not receive more orders. Please subscribe to new plan.');
                 $planInfo['ordersAlertType']="danger";
             }
-            
+
         }else{
+
             //Unlimited orders - if plan has ordering
             if($currentPlan->enable_ordering==1){
                 //Has ordering
@@ -129,29 +130,20 @@ class Restorant extends MyModel
                 $planInfo['canMakeNewOrder']=false;
                 $planInfo['ordersAlertType']="danger";
             }
-           
+
         }
 
         // dd($this->pay_tru_menu);
 
-        if($planInfo['canMakeNewOrder']){
-            if($this->pay_tru_menu){
-                $planInfo['canMakeNewOrder'] = true;
-            }else{
-                if($this->no_ordering){
-                    $planInfo['canMakeNewOrder'] = false;
-                }
-            }
-        }
 
         $plugins=$currentPlan->getConfig('plugins',null);
-        
+
         if($plugins){
             $planInfo['allowedPluginsPerPlan']=json_decode($plugins,false);
         }else{
             $planInfo['allowedPluginsPerPlan']=null;
         }
-        
+
 
         return $planInfo;
 
@@ -254,7 +246,7 @@ class Restorant extends MyModel
         ];
 
         $dayKeys=array_keys($creationArray);
-        
+
         //Get all working hours
         $workingHours=$this->hours()->get()->toArray();
 
@@ -266,10 +258,10 @@ class Restorant extends MyModel
                     $toHour=date("H:i", strtotime($shift[$to]));
                     array_push($creationArray[$dayKeys[$i]],date("H:i", strtotime($shift[$from]))."-".$toHour);
                 }
-                
+
             }
         }
-        
+
         //Set config based on restaurant
         config(['app.timezone' => $this->getConfig('time_zone',config('app.timezone'))]);
 
@@ -279,7 +271,7 @@ class Restorant extends MyModel
 
 
         $mergedRanges = OpeningHours::mergeOverlappingRanges($creationArray);
-       
+
 
         //Get all working hours
         return OpeningHours::create($mergedRanges,$tz);

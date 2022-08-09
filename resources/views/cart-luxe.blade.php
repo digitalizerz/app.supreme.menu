@@ -1,10 +1,18 @@
 @extends('layouts.front-luxe', ['class' => ''])
 @section('content')
+
+<style>
+    @media only screen and (max-width:600px){
+        #payment-methods{
+            margin: 10px 5px 10px 5px;
+        }
+    }
+</style>
 <section class="relative hero-background">
   <picture data-background=true >
       <div class="opacity-mask"></div>
       <source  srcset="{{ $restorant->coverm }}" media="(min-width: 569px)" />
-      <img src='{{ $restorant->coverm }}' />        
+      <img src='{{ $restorant->coverm }}' />
   </picture>
   <div class="d-flex align-items-center justify-content-center hero-title">
   <div class="hero-container text-center">
@@ -39,7 +47,7 @@
                 <hr class="dashed">
                 @if (count($timeSlots)>0)
                   <!-- Payment Methods-->
-                  <div class="row">
+                  <div class="row" id="payment-methods">
                     <div class="col-12 col-md-3">
                       <h5 class="text-muted">03</h5>
                       <h4 class="uppercase">{{ __('Payment Method') }}</h4>

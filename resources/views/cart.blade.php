@@ -49,7 +49,7 @@
 
                         <!-- Comment -->
                         @include('cart.comment')
-                    @elseif(config('app.isag'))  
+                    @elseif(config('app.isag'))
                         @if(count($timeSlots)>0)
                             <!-- Delivery method -->
                             @include('cart.delivery')
@@ -73,10 +73,10 @@
                     @elseif(config('app.isqrsaas')&&count($timeSlots)>0)
 
                       <!-- QRSAAS -->
-                      
+
                       <!-- DINE IN OR TAKEAWAY -->
                       @if (config('settings.enable_pickup'))
-                      
+
                           @if (in_array("poscloud", config('global.modules',[])) || in_array("deliveryqr", config('global.modules',[])) )
                             <!-- We have POS in QR -->
                             @include('cart.localorder.dineiintakeawaydeliver')
@@ -86,14 +86,14 @@
                               @include('cart.newaddress')
                               <br />
                             </div>
-                            
-                            
-                           
+
+
+
                           @else
                              <!-- Simple QR -->
                             @include('cart.localorder.dineiintakeaway')
                           @endif
-                          
+
                           <!-- Takeaway time slot -->
                           <div class="takeaway_picker" style="display: none">
                               @include('cart.time')
@@ -110,11 +110,11 @@
                       <!-- Custom Fields -->
                       @include('cart.customfields')
 
-                    
+
 
                       <!-- Comment -->
                       @include('cart.comment')
-                        
+
 
                     @endif
                 @else
